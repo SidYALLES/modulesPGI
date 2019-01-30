@@ -3,9 +3,11 @@ class etudiant(models.Model):
     _name = 'etudiant'
     matricule=fields.char('matricule',size=30,required=True, help='the name')
     nom=fields.char('nom',size=30,required=True, help='the first name')
+    #n'utilise pas les majuscules
     dateN=fields.date('dateN',size=30,required=True, help='the birth date')
     prenom=fields.char('prenom',size=50, help='the email')
     id_encadreur=many2one('encadreur')
+    #n'utilise pas les majuscules
     sessionEncadrementEtudiant_ids=one2many('sessionEncadrementEtudiant','id_etudiant')
 
 etudiant()
@@ -74,6 +76,7 @@ class sessionEncadrementEtudiant(models.Model):
     id_etudiant=many2one('etudiant')
 
 class sessionEncadrementDoctorant(models.Model):
+    # Pour les noms des classes utiliser les _
     _name = 'sessionEncadrement'
     heure=fields.char('titre',size=30,required=True, help='the time')
     date = fields.date('date', size=30, required=True)
