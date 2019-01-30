@@ -4,20 +4,20 @@
 
    <!-- Les vues de l'étudiant -->
     <record id="etudiant_form" model="ir.ui.view">
-        <field name="name">etudiant.form</field>
-        <field name="model">etudiant</field>
+        <field name="name" >etudiant.form</field>
+        <field name="model">dpgr.etudiant</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="Etudiant" version="7.0">  
             <group col="4">     
-            <field name="matricule"/>
-            <field name="nom"/>  
-            <field name="prenom"/>
-            <field name="dateN"/>
-            <field name="id_encadreur"/>
+            <field name="matricule" string="Le matricule"/>
+            <field name="nom" string="Le nom"/>  
+            <field name="prenom" string="Le prenom"/>
+            <field name="dateN" string="Date de naissence"/>
+            <field name="id_encadreur" string="L'encadreur"/>
             <notebook colspan="5">
                     <page string="Les sessions d'encadrement">
-                      <field name="sessionEncadrementEtudiant_ids"/> 
+                      <field name="sessionencadrementetu_ids"/> 
                     </page>
                 </notebook>
             </group>
@@ -27,22 +27,22 @@
  
     <record id="etudiant_tree" model="ir.ui.view">
       <field name="name">etudiant.tree</field>
-      <field name="model">etudiant</field>
+      <field name="model">dpgr.etudiant</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Etudiant">
-            <field name="matricule"/>
-            <field name="nom"/>  
-            <field name="prenom"/>
-            <field name="dateN"/>
-            <field name="id_encadreur"/>
+            <field name="matricule" string="Le matricule"/>
+            <field name="nom" string="Le nom"/>  
+            <field name="prenom" string="Le prenom"/>
+            <field name="dateN" string="Date de naissence"/>
+            <field name="id_encadreur" string="L'encadreur"/>
         </tree>
       </field>
     </record>
 
     <record model="ir.ui.view" id="etudiant_search">
       <field name="name">etudiant.search</field>
-      <field name="model">etudiant</field>
+      <field name="model">dpgr.etudiant</field>
       <field name="arch" type="xml">
         <search string="rechercher des étudiants">
           <field name="matricule" />
@@ -53,7 +53,7 @@
    <record model="ir.actions.act_window" id="action_etudiant">
       <field name="name">etudiant</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">etudiant</field>
+      <field name="res_model">dpgr.etudiant</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -61,23 +61,23 @@
     <!-- Les vues du doctorant -->
    <record id="doctorant_form" model="ir.ui.view">
         <field name="name">doctorant.form</field>
-        <field name="model">doctorant</field>
+        <field name="model">dpgr.doctorant</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="Doctorant" version="7.0">  
             <group col="4">     
-            <field name="nom"/>  
-            <field name="prenom"/>
-            <field name="dateN"/>
-            <field name="etat"/>
-            <field name="id_encadreurD"/>
-            <field name="id_these"/>
+            <field name="nom" string="Le nom"/>  
+            <field name="prenom" string="Le prenom"/>
+            <field name="dateN" string="Date de naissence"/>
+            <field name="etat" string="Etat"/>
+            <field name="id_encadreurD" string="L'encadreur"/>
+            <field name="id_these" string="La thèse"/>
             <notebook colspan="5">
                     <page string="Les sessions d'encadrement">
-                      <field name="sessionEncadrementDoctorant_ids"/> 
+                      <field name="sessionencadrementdoc_ids"/> 
                     </page>
                     <page string="Les sessions d'evaluation">
-                      <field name="sessionEvaluation_ids"/> 
+                      <field name="sessionevaluation_ids"/> 
                     </page>
             </notebook>
             </group>
@@ -87,25 +87,25 @@
  
     <record id="doctorant_tree" model="ir.ui.view">
       <field name="name">doctorant.tree</field>
-      <field name="model">doctorant</field>
+      <field name="model">dpgr.doctorant</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Etudiant">
-            <field name="nom"/>  
-            <field name="prenom"/>
-            <field name="dateN"/>
-            <field name="etat"/>
-            <field name="id_encadreurD"/>
-            <field name="id_these"/>
-            <field name="sessionEncadrementDoctorant_ids"/>
-            <field name="sessionEvaluation_ids"/> 
+            <field name="nom" string="Le nom"/>  
+            <field name="prenom" string="Le prenom"/>
+            <field name="dateN" string="Date de naissence"/>
+            <field name="etat" string="Etat"/>
+            <field name="id_encadreurD" string="L'encadreur"/>
+            <field name="id_these" string="La thèse"/>
+            <field name="sessionencadrementdoc_ids"/> 
+            <field name="sessionevaluation_ids"/> 
         </tree>
       </field>
     </record>
 
     <record model="ir.ui.view" id="doctorant_search">
       <field name="name">doctorant.search</field>
-      <field name="model">doctorant</field>
+      <field name="model">dpgr.doctorant</field>
       <field name="arch" type="xml">
         <search string="rechercher des doctorants">
           <field name="nom" />
@@ -116,7 +116,7 @@
     <record model="ir.actions.act_window" id="action_doctorant">
       <field name="name">doctorant</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">doctorant</field>
+      <field name="res_model">dpgr.doctorant</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -124,15 +124,15 @@
     <!-- Les vues de l'encadrent -->
     <record id="encadreur_form" model="ir.ui.view">
         <field name="name">encadreur.form</field>
-        <field name="model">encadreur</field>
+        <field name="model">dpgr.encadreur</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="Encadreur" version="7.0">  
             <group col="4">     
-            <field name="nom"/>  
-            <field name="prenom"/>
-            <field name="dateN"/>
-            <field name="fonction"/>
+            <field name="nom" string="La nom"/>  
+            <field name="prenom" string="Le prenom"/>
+            <field name="dateN" string="Date de naissence"/>
+            <field name="fonction" string="Fonction professionnelle"/>
             <notebook colspan="5">
                     <page string="Etudiants">
                       <field name="etudiant_ids"/> 
@@ -148,14 +148,14 @@
  
     <record id="encadreur_tree" model="ir.ui.view">
       <field name="name">encadreur.tree</field>
-      <field name="model">encadreur</field>
+      <field name="model">dpgr.encadreur</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Encadreur">
-            <field name="nom"/>  
-            <field name="prenom"/>
-            <field name="dateN"/>
-            <field name="fonction"/>
+            <field name="nom" string="Le nom"/>  
+            <field name="prenom" string="Le prenom"/>
+            <field name="dateN" string="Date de naissence"/>
+            <field name="fonction" string="Fonction professionnelle"/>
             <field name="etudiant_ids"/>
             <field name="doctorant_ids"/>
         </tree>
@@ -164,7 +164,7 @@
 
     <record model="ir.ui.view" id="encadreur_search">
       <field name="name">encadreur.search</field>
-      <field name="model">encadreur</field>
+      <field name="model">dpgr.encadreur</field>
       <field name="arch" type="xml">
         <search string="rechercher des encadreurs">
           <field name="nom" />
@@ -175,26 +175,26 @@
     <record model="ir.actions.act_window" id="action_encadreur">
       <field name="name">encadreur</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">encadreur</field>
+      <field name="res_model">dpgr.encadreur</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
     
     <!-- Les vues du jury -->
-    <record id="jury_form" model="ir.ui.view">sessionEvaluation_ids
+    <record id="jury_form" model="ir.ui.view">
         <field name="name">jury.form</field>
-        <field name="model">jury</field>
+        <field name="model">dpgr.jury</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="Jury" version="7.0">  
             <group col="4">     
-            <field name="nom"/>  
-            <field name="prenom"/>
-            <field name="dateN"/>
-            <field name="fonction"/>
+            <field name="nom" string="Le nom"/>  
+            <field name="prenom" string="Le prenom"/>
+            <field name="dateN" string="Date de naissence"/>
+            <field name="fonction" string="Fonction professionnelle"/>
             <notebook colspan="6">
                     <page string="Sessions d'évaluation">
-                      <field name="sessionEvaluation_ids"/> 
+                      <field name="sessionevaluation_ids"/> 
                     </page>
                 </notebook>
             </group>
@@ -204,22 +204,23 @@
  
     <record id="jury_tree" model="ir.ui.view">
       <field name="name">jury.tree</field>
-      <field name="model">jury</field>
+      <field name="model">dpgr.jury</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="jury">
             <field name="nom"/>  
-            <field name="prenom"/>
-            <field name="dateN"/>
-            <field name="fonction"/>
-            <field name="sessionEvaluation_ids"/>
+            <field name="nom" string="Le nom"/>  
+            <field name="prenom" string="Le prenom"/>
+            <field name="dateN" string="Date de naissence"/>
+            <field name="fonction" string="Fonction professionnelle"/>
+            <field name="sessionevaluation_ids"/>
         </tree>
       </field>
     </record>
 
     <record model="ir.ui.view" id="jury_search">
       <field name="name">jury.search</field>
-      <field name="model">jury</field>
+      <field name="model">dpgr.jury</field>
       <field name="arch" type="xml">
         <search string="rechercher des étudiants">
           <field name="nom" />
@@ -230,7 +231,7 @@
     <record model="ir.actions.act_window" id="action_jury">
       <field name="name">jury</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">jury</field>
+      <field name="res_model">dpgr.jury</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -238,12 +239,12 @@
     <!-- Les vues des thèses -->
     <record id="these_form" model="ir.ui.view">
         <field name="name">these.form</field>
-        <field name="model">these</field>
+        <field name="model">dpgr.these</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="these" version="7.0">      
-            <field name="titre"/>
-            <field name="description"/>  
+            <field name="titre" string="Titre"/>
+            <field name="description" string="Description"/>  
             <notebook colspan="5">
                     <page string="Doctorants Correspondants">
                         <field name="doctorant_ids"/>
@@ -255,12 +256,12 @@
  
     <record id="these_tree" model="ir.ui.view">
       <field name="name">these.tree</field>
-      <field name="model">these</field>
+      <field name="model">dpgr.these</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="these">
-            <field name="titre"/>
-            <field name="description"/>  
+            <field name="titre" string="Titre"/>
+            <field name="description" string="Description"/> 
             <field name="doctorant_ids"/>
         </tree>
       </field>
@@ -268,7 +269,7 @@
 
     <record model="ir.ui.view" id="these_search">
       <field name="name">these.search</field>
-      <field name="model">these</field>
+      <field name="model">dpgr.these</field>
       <field name="arch" type="xml">
         <search string="rechercher des thèse">
           <field name="titre" />
@@ -279,170 +280,171 @@
     <record model="ir.actions.act_window" id="action_these">
       <field name="name">these</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">these</field>
+      <field name="res_model">dpgr.these</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
     
     <!-- Les vues du formulaire d'évaluation -->
-    <record id="formulaireE_form" model="ir.ui.view">
-        <field name="name">formulaireE.form</field>
-        <field name="model">formulaireE</field>
+    <record id="formulaire_form" model="ir.ui.view">
+        <field name="name">formulaire.form</field>
+        <field name="model">dpgr.formulaire</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="formulaire d'evaluation" version="7.0">  
             <group col="4">     
-            <field name="note"/>
-            <field name="motifs"/>  
-            <field name="remarques"/>
-            <field name="sessionEvaluation_id"/>
+            <field name="note" string="La note"/>
+            <field name="motifs" string="Les motifs"/>  
+            <field name="remarques" string="Remarques"/>
+            <field name="sessionevaluation_id"/>
             </group>
           </form>
         </field>
     </record>
  
-    <record id="formulaireE_tree" model="ir.ui.view">
-      <field name="name">formulaireE.tree</field>
-      <field name="model">formulaireE</field>
+    <record id="formulaire_tree" model="ir.ui.view">
+      <field name="name">formulaire.tree</field>
+      <field name="model">dpgr.formulaire</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="formulaire d'evaluation">
-            <field name="note"/>
-            <field name="motifs"/>  
-            <field name="remarques"/>
-            <field name="sessionEvaluation_id"/>
+            <field name="note" string="La note"/>
+            <field name="motifs" string="Les motifs"/>  
+            <field name="remarques" string="Remarques"/>
+            <field name="sessionevaluation_id"/>
         </tree>
       </field>
     </record>
     
-    <record model="ir.actions.act_window" id="action_formulaireE">
-      <field name="name">formulaireE</field>
+    <record model="ir.actions.act_window" id="action_formulaire">
+      <field name="name">formulaire</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">formulaireE</field>
+      <field name="res_model">dpgr.formulaire</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
   
     <!-- Les vues des sessions d'évaluation -->
-    <record id="sessionEvaluation_form" model="ir.ui.view">
-        <field name="name">sessionEvaluation.form</field>
-        <field name="model">sessionEvaluation</field>
+    <record id="sessionevaluation_form" model="ir.ui.view">
+        <field name="name">sessionevaluation.form</field>
+        <field name="model">dpgr.sessionevaluation</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="session d'evaluation" version="7.0">  
             <group col="4">     
-            <field name="heure"/>
-            <field name="date"/>  
-            <field name="lieux"/>
-            <field name="doctorant_id"/>
-            <field name="jury_id"/>
-            <field name="formulaireE_id"/>
+            <field name="heure" string="Heure" widget="float_time"/>
+            <field name="date" string="Date"/>  
+            <field name="lieux" string="Lieux"/>
+            <field name="doctorant_id" string="Le doctorant"/>
+            <field name="jury_id" string="Le jury"/>
+            <field name="formulaire_id" string="Formulaire d'évaluation"/>
             </group>
           </form>
         </field>
     </record>
  
-    <record id="sessionEvaluation_tree" model="ir.ui.view">
-      <field name="name">sessionEvaluation.tree</field>
-      <field name="model">sessionEvaluation</field>
+    <record id="sessionevaluation_tree" model="ir.ui.view">
+      <field name="name">sessionevaluation.tree</field>
+      <field name="model">dpgr.sessionevaluation</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="session d'evaluation">
-            <field name="heure"/>
-            <field name="date"/>  
-            <field name="lieux"/>
-            <field name="doctorant_id"/>
-            <field name="jury_id"/>
+            <field name="heure" string="Heure"/>
+            <field name="date" string="Date"/>  
+            <field name="lieux" string="Date"/>
+            <field name="doctorant_id" string="Le doctorant"/>
+            <field name="jury_id" string="Le jury"/>
+            <field name="formulaire_id" string="Formulaire d'évaluation"/>
         </tree>
       </field>
     </record>
     
-    <record model="ir.actions.act_window" id="action_sessionEvaluation">
-      <field name="name">sessionEvaluation</field>
+    <record model="ir.actions.act_window" id="action_sessionevaluation">
+      <field name="name">sessionevaluation</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">sessionEvaluation</field>
+      <field name="res_model">dpgr.sessionevaluation</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
               
     <!-- Les vues des sessions d'encadrement etudiant -->
-    <record id="sessionEncadrementEtudiant_form" model="ir.ui.view">
-        <field name="name">sessionEncadrementEtudiant.form</field>
-        <field name="model">sessionEncadrementEtudiant</field>
+    <record id="sessionencadrementetu_form" model="ir.ui.view">
+        <field name="name">sessionencadrementetu.form</field>
+        <field name="model">dpgr.sessionencadrementetu</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="session d'encadrement d'etudiant" version="7.0">  
             <group col="5">     
-            <field name="heure"/>
-            <field name="date"/>  
-            <field name="etat d'avancement"/>
-            <field name="remarque"/>
-            <field name="id_etudiant"/>
+            <field name="heure" string="Heure" widget="float_time"/>
+            <field name="date" string="Date"/>  
+            <field name="etatAvancement" string="Etat d'avancement"/>
+            <field name="remarques" string="Remarques"/>
+            <field name="id_etudiant" string="L'étudiant"/>
             </group>
           </form>
         </field>
     </record>
  
-    <record id="sessionEncadrementEtudiant_tree" model="ir.ui.view">
-      <field name="name">sessionEncadrementEtudiant.tree</field>
-      <field name="model">sessionEncadrementEtudiant</field>
+    <record id="sessionencadrementetu_tree" model="ir.ui.view">
+      <field name="name">sessionencadrementetu.tree</field>
+      <field name="model">dpgr.sessionencadrementetu</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="session d'encadrement">
-            <field name="heure"/>
-            <field name="date"/>  
-            <field name="etat d'avancement"/>
-            <field name="remarque"/>
-            <field name="id_etudiant"/>
+            <field name="heure" string="Heure"/>
+            <field name="date" string="Date"/>  
+            <field name="etatAvancement" string="Etat d'avancement"/>
+            <field name="remarques" string="Remarques"/>
+            <field name="id_etudiant" string="L'étudiant"/>
         </tree>
       </field>
     </record>
     
-    <record model="ir.actions.act_window" id="action_sessionEncadrementEtudiant">
-      <field name="name">sessionEncadrementEtudiant</field>
+    <record model="ir.actions.act_window" id="action_sessionencadrementetu">
+      <field name="name">sessionencadrementetu</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">sessionEncadrementEtudiant</field>
+      <field name="res_model">dpgr.sessionencadrementetu</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Les vues des sessions d'encadrement doctorant -->
-    <record id="sessionEncadrementDoctorant_form" model="ir.ui.view">
-        <field name="name">sessionEncadrementDoctorant.form</field>
-        <field name="model">sessionEncadrementDoctorant</field>
+    <record id="sessionencadrementdoc_form" model="ir.ui.view">
+        <field name="name">sessionencadrementdoc.form</field>
+        <field name="model">dpgr.sessionencadrementdoc</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="session d'encadrement de doctorant" version="7.0">  
             <group col="5">     
-            <field name="heure"/>
-            <field name="date"/>  
-            <field name="etat d'avancement"/>
-            <field name="remarque"/>
-            <field name="id_doctorant"/>
+            <field name="heure" string="Heure" widget="float_time"/>
+            <field name="date" string="Date"/>  
+            <field name="etatAvancement" string="Etat d'avancement"/>
+            <field name="remarques" string="Remarques"/>
+            <field name="id_doc" string="Le doctorant"/>
             </group>
           </form>
         </field>
     </record>
  
-    <record id="sessionEncadrementDoctorant_tree" model="ir.ui.view">
-      <field name="name">sessionEncadrementDoctorant.tree</field>
-      <field name="model">sessionEncadrementDoctorant</field>
+    <record id="sessionencadrementdoc_tree" model="ir.ui.view">
+      <field name="name">sessionencadrementdoc.tree</field>
+      <field name="model">dpgr.sessionencadrementdoc</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="session d'encadrement">
-            <field name="heure"/>
-            <field name="date"/>  
-            <field name="etat d'avancement"/>
-            <field name="remarque"/>
-            <field name="id_doctorant"/>
+            <field name="heure" string="Heure"/>
+            <field name="date" string="Date"/>  
+            <field name="etatAvancement" string="Etat d'avancement"/>
+            <field name="remarques" string="Remarques"/>
+            <field name="id_doc" string="Le doctorant"/>
         </tree>
       </field>
     </record>
     
-    <record model="ir.actions.act_window" id="action_sessionEncadrementDoctorant">
-      <field name="name">sessionEncadrementDoctorant</field>
+    <record model="ir.actions.act_window" id="action_sessionencadrementdoc">
+      <field name="name">sessionencadrementdoc</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">sessionEncadrementDoctorant</field>
+      <field name="res_model">dpgr.sessionencadrementdoc</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -462,10 +464,10 @@
     <menuitem name="Thèses" id="these" parent="Theses" action="action_these"/>
     
     <menuitem name="Encadrement et Evaluation" id="Encadrement_et_Evaluation" parent="Etudiant_et_Doctorant_globale" />
-    <menuitem name="Session d'encadrement étudiant" id="ses_e_e" parent="Encadrement_et_Evaluation" action="action_sessionEncadrementEtudiant"/>
-    <menuitem name="Session d'encadrement doctorant" id="ses_e_d" parent="Encadrement_et_Evaluation" action="action_sessionEncadrementDoctorant"/>
-    <menuitem name="Session d'évaluation" id="ses_e_e" parent="Encadrement_et_Evaluation" action="action_sessionEvaluation"/>
-    <menuitem name="Formulaire d'évaluation" id="ses_e_d" parent="Encadrement_et_Evaluation" action="action_formulaireE"/>
+    <menuitem name="Encadrement étudiant" id="ses_e_e" parent="Encadrement_et_Evaluation" action="action_sessionencadrementetu"/>
+    <menuitem name="Encadrement doctorant" id="ses_e_d" parent="Encadrement_et_Evaluation" action="action_sessionencadrementdoc"/>
+    <menuitem name="Session d'évaluation" id="ses_e" parent="Encadrement_et_Evaluation" action="action_sessionevaluation"/>
+    <menuitem name="Formulaire d'évaluation" id="form_e" parent="Encadrement_et_Evaluation" action="action_formulaire"/>
     
     
   </data>
