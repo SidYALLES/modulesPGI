@@ -2,8 +2,9 @@
 <openerp>
   <data>
 
-    <record id="etudiant_doctorant_form" model="ir.ui.view">
-        <field name="name">etudiant.doctorant.form</field>
+   <!-- Les vues de l'étudiant -->
+    <record id="etudiant_form" model="ir.ui.view">
+        <field name="name">etudiant.form</field>
         <field name="model">etudiant</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
@@ -13,13 +14,19 @@
             <field name="nom"/>  
             <field name="prenom"/>
             <field name="dateN"/>
+            <field name="id_encadreur"/>
+            <notebook colspan="5">
+                    <page string="Les sessions d'encadrement">
+                      <field name="sessionEncadrementEtudiant_ids"/> 
+                    </page>
+                </notebook>
             </group>
           </form>
         </field>
     </record>
  
-    <record id="etudiant_doctorant_tree" model="ir.ui.view">
-      <field name="name">etudiant.doctorant.tree</field>
+    <record id="etudiant_tree" model="ir.ui.view">
+      <field name="name">etudiant.tree</field>
       <field name="model">etudiant</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
@@ -28,44 +35,438 @@
             <field name="nom"/>  
             <field name="prenom"/>
             <field name="dateN"/>
+            <field name="id_encadreur"/>
         </tree>
       </field>
     </record>
 
-    <record model="ir.ui.view" id="etudiant_doctorant_search">
-      <field name="name">etudiant.doctorant.search</field>
+    <record model="ir.ui.view" id="etudiant_search">
+      <field name="name">etudiant.search</field>
       <field name="model">etudiant</field>
       <field name="arch" type="xml">
         <search string="rechercher des étudiants">
           <field name="matricule" />
-      <!--    <filter name="filter_see_all" string="All" domain="['|', ('active', '=',True), ('active', '=',False)]" />
-          <filter name="filter_see_active" string="Active" domain="[('active', '=',True)]" />
-          <filter name="filter_see_inactive" string="Inactive" domain="[('active', '=',False)]" /> -->
        </search>
       </field>
-    </record>
+    </record>  
 
-    <!-- L'action du menu -->
-    <record model="ir.actions.act_window" id="action_etudiant">
+   <record model="ir.actions.act_window" id="action_etudiant">
       <field name="name">etudiant</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">etudiant</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
-      <field name="view_id" ref="etudiant_doctorant_tree"/>
- <!--     <field name="context">{"search_default_filter_see_all":1}</field> -->
+    </record>
+   
+    <!-- Les vues du doctorant -->
+   <record id="doctorant_form" model="ir.ui.view">
+        <field name="name">doctorant.form</field>
+        <field name="model">doctorant</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="Doctorant" version="7.0">  
+            <group col="4">     
+            <field name="nom"/>  
+            <field name="prenom"/>
+            <field name="dateN"/>
+            <field name="etat"/>
+            <field name="id_encadreurD"/>
+            <field name="id_these"/>
+            <notebook colspan="5">
+                    <page string="Les sessions d'encadrement">
+                      <field name="sessionEncadrementDoctorant_ids"/> 
+                    </page>
+                    <page string="Les sessions d'evaluation">
+                      <field name="sessionEvaluation_ids"/> 
+                    </page>
+            </notebook>
+            </group>
+          </form>
+        </field>
+    </record>
+ 
+    <record id="doctorant_tree" model="ir.ui.view">
+      <field name="name">doctorant.tree</field>
+      <field name="model">doctorant</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Etudiant">
+            <field name="nom"/>  
+            <field name="prenom"/>
+            <field name="dateN"/>
+            <field name="etat"/>
+            <field name="id_encadreurD"/>
+            <field name="id_these"/>
+            <field name="sessionEncadrementDoctorant_ids"/>
+            <field name="sessionEvaluation_ids"/> 
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="doctorant_search">
+      <field name="name">doctorant.search</field>
+      <field name="model">doctorant</field>
+      <field name="arch" type="xml">
+        <search string="rechercher des doctorants">
+          <field name="nom" />
+       </search>
+      </field>
+    </record> 
+    
+    <record model="ir.actions.act_window" id="action_doctorant">
+      <field name="name">doctorant</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">doctorant</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Les vues de l'encadrent -->
+    <record id="encadreur_form" model="ir.ui.view">
+        <field name="name">encadreur.form</field>
+        <field name="model">encadreur</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="Encadreur" version="7.0">  
+            <group col="4">     
+            <field name="nom"/>  
+            <field name="prenom"/>
+            <field name="dateN"/>
+            <field name="fonction"/>
+            <notebook colspan="5">
+                    <page string="Etudiants">
+                      <field name="etudiant_ids"/> 
+                    </page>
+                    <page string="Doctorants">
+                      <field name="doctorant_ids"/> 
+                    </page>
+                </notebook>
+            </group>
+          </form>
+        </field>
+    </record>
+ 
+    <record id="encadreur_tree" model="ir.ui.view">
+      <field name="name">encadreur.tree</field>
+      <field name="model">encadreur</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Encadreur">
+            <field name="nom"/>  
+            <field name="prenom"/>
+            <field name="dateN"/>
+            <field name="fonction"/>
+            <field name="etudiant_ids"/>
+            <field name="doctorant_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="encadreur_search">
+      <field name="name">encadreur.search</field>
+      <field name="model">encadreur</field>
+      <field name="arch" type="xml">
+        <search string="rechercher des encadreurs">
+          <field name="nom" />
+       </search>
+      </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_encadreur">
+      <field name="name">encadreur</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">encadreur</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Les vues du jury -->
+    <record id="jury_form" model="ir.ui.view">sessionEvaluation_ids
+        <field name="name">jury.form</field>
+        <field name="model">jury</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="Jury" version="7.0">  
+            <group col="4">     
+            <field name="nom"/>  
+            <field name="prenom"/>
+            <field name="dateN"/>
+            <field name="fonction"/>
+            <notebook colspan="6">
+                    <page string="Sessions d'évaluation">
+                      <field name="sessionEvaluation_ids"/> 
+                    </page>
+                </notebook>
+            </group>
+          </form>
+        </field>
+    </record>
+ 
+    <record id="jury_tree" model="ir.ui.view">
+      <field name="name">jury.tree</field>
+      <field name="model">jury</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="jury">
+            <field name="nom"/>  
+            <field name="prenom"/>
+            <field name="dateN"/>
+            <field name="fonction"/>
+            <field name="sessionEvaluation_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="jury_search">
+      <field name="name">jury.search</field>
+      <field name="model">jury</field>
+      <field name="arch" type="xml">
+        <search string="rechercher des étudiants">
+          <field name="nom" />
+       </search>
+      </field>
+    </record> 
+    
+    <record model="ir.actions.act_window" id="action_jury">
+      <field name="name">jury</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">jury</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Les vues des thèses -->
+    <record id="these_form" model="ir.ui.view">
+        <field name="name">these.form</field>
+        <field name="model">these</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="these" version="7.0">      
+            <field name="titre"/>
+            <field name="description"/>  
+            <notebook colspan="5">
+                    <page string="Doctorants Correspondants">
+                        <field name="doctorant_ids"/>
+                    </page>
+            </notebook>
+          </form>
+        </field>
+    </record>
+ 
+    <record id="these_tree" model="ir.ui.view">
+      <field name="name">these.tree</field>
+      <field name="model">these</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="these">
+            <field name="titre"/>
+            <field name="description"/>  
+            <field name="doctorant_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="these_search">
+      <field name="name">these.search</field>
+      <field name="model">these</field>
+      <field name="arch" type="xml">
+        <search string="rechercher des thèse">
+          <field name="titre" />
+       </search>
+      </field>
+    </record>  
+    
+    <record model="ir.actions.act_window" id="action_these">
+      <field name="name">these</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">these</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Les vues du formulaire d'évaluation -->
+    <record id="formulaireE_form" model="ir.ui.view">
+        <field name="name">formulaireE.form</field>
+        <field name="model">formulaireE</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="formulaire d'evaluation" version="7.0">  
+            <group col="4">     
+            <field name="note"/>
+            <field name="motifs"/>  
+            <field name="remarques"/>
+            <field name="sessionEvaluation_id"/>
+            </group>
+          </form>
+        </field>
+    </record>
+ 
+    <record id="formulaireE_tree" model="ir.ui.view">
+      <field name="name">formulaireE.tree</field>
+      <field name="model">formulaireE</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="formulaire d'evaluation">
+            <field name="note"/>
+            <field name="motifs"/>  
+            <field name="remarques"/>
+            <field name="sessionEvaluation_id"/>
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_formulaireE">
+      <field name="name">formulaireE</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">formulaireE</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
     </record>
   
-    <menuitem 
-              name="Etudiants/Etudiants" 
-              id="rebrique_etudiant_doctorant" 
-              />
-    <menuitem
-            name="Etudiants"
-            id="menu_etudiant"
-            parent="rebrique_etudiant_doctorant"
-            action="action_etudiant"    
-            />
+    <!-- Les vues des sessions d'évaluation -->
+    <record id="sessionEvaluation_form" model="ir.ui.view">
+        <field name="name">sessionEvaluation.form</field>
+        <field name="model">sessionEvaluation</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="session d'evaluation" version="7.0">  
+            <group col="4">     
+            <field name="heure"/>
+            <field name="date"/>  
+            <field name="lieux"/>
+            <field name="doctorant_id"/>
+            <field name="jury_id"/>
+            <field name="formulaireE_id"/>
+            </group>
+          </form>
+        </field>
+    </record>
+ 
+    <record id="sessionEvaluation_tree" model="ir.ui.view">
+      <field name="name">sessionEvaluation.tree</field>
+      <field name="model">sessionEvaluation</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="session d'evaluation">
+            <field name="heure"/>
+            <field name="date"/>  
+            <field name="lieux"/>
+            <field name="doctorant_id"/>
+            <field name="jury_id"/>
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_sessionEvaluation">
+      <field name="name">sessionEvaluation</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sessionEvaluation</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+              
+    <!-- Les vues des sessions d'encadrement etudiant -->
+    <record id="sessionEncadrementEtudiant_form" model="ir.ui.view">
+        <field name="name">sessionEncadrementEtudiant.form</field>
+        <field name="model">sessionEncadrementEtudiant</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="session d'encadrement d'etudiant" version="7.0">  
+            <group col="5">     
+            <field name="heure"/>
+            <field name="date"/>  
+            <field name="etat d'avancement"/>
+            <field name="remarque"/>
+            <field name="id_etudiant"/>
+            </group>
+          </form>
+        </field>
+    </record>
+ 
+    <record id="sessionEncadrementEtudiant_tree" model="ir.ui.view">
+      <field name="name">sessionEncadrementEtudiant.tree</field>
+      <field name="model">sessionEncadrementEtudiant</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="session d'encadrement">
+            <field name="heure"/>
+            <field name="date"/>  
+            <field name="etat d'avancement"/>
+            <field name="remarque"/>
+            <field name="id_etudiant"/>
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_sessionEncadrementEtudiant">
+      <field name="name">sessionEncadrementEtudiant</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sessionEncadrementEtudiant</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Les vues des sessions d'encadrement doctorant -->
+    <record id="sessionEncadrementDoctorant_form" model="ir.ui.view">
+        <field name="name">sessionEncadrementDoctorant.form</field>
+        <field name="model">sessionEncadrementDoctorant</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="session d'encadrement de doctorant" version="7.0">  
+            <group col="5">     
+            <field name="heure"/>
+            <field name="date"/>  
+            <field name="etat d'avancement"/>
+            <field name="remarque"/>
+            <field name="id_doctorant"/>
+            </group>
+          </form>
+        </field>
+    </record>
+ 
+    <record id="sessionEncadrementDoctorant_tree" model="ir.ui.view">
+      <field name="name">sessionEncadrementDoctorant.tree</field>
+      <field name="model">sessionEncadrementDoctorant</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="session d'encadrement">
+            <field name="heure"/>
+            <field name="date"/>  
+            <field name="etat d'avancement"/>
+            <field name="remarque"/>
+            <field name="id_doctorant"/>
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_sessionEncadrementDoctorant">
+      <field name="name">sessionEncadrementDoctorant</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sessionEncadrementDoctorant</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  
+  <!-- les menus -->
+    <menuitem id="Etudiant_et_Doctorant_globale" name="Etudiant et Doctorant"/>
+      
+    <menuitem name="Etudiants et Doctorants" id="Etudiant_et_Doctorant" parent="Etudiant_et_Doctorant_globale" />
+    <menuitem name="Etudiant" id="Etudiant" parent="Etudiant_et_Doctorant" action="action_etudiant"/>
+    <menuitem name="Doctorant" id="Doctorant" parent="Etudiant_et_Doctorant" action="action_doctorant"/>
+    
+    <menuitem name="Encadreurs et Juries" id="Encadreurs_et_Juries" parent="Etudiant_et_Doctorant_globale" />
+    <menuitem name="Encadreur" id="Encadreur" parent="Encadreurs_et_Juries" action="action_encadreur"/>
+    <menuitem name="Jury" id="Jury" parent="Encadreurs_et_Juries" action="action_jury"/>
+    
+    <menuitem name="Thèses et thèmes" id="Theses" parent="Etudiant_et_Doctorant_globale" />
+    <menuitem name="Thèses" id="these" parent="Theses" action="action_these"/>
+    
+    <menuitem name="Encadrement et Evaluation" id="Encadrement_et_Evaluation" parent="Etudiant_et_Doctorant_globale" />
+    <menuitem name="Session d'encadrement étudiant" id="ses_e_e" parent="Encadrement_et_Evaluation" action="action_sessionEncadrementEtudiant"/>
+    <menuitem name="Session d'encadrement doctorant" id="ses_e_d" parent="Encadrement_et_Evaluation" action="action_sessionEncadrementDoctorant"/>
+    <menuitem name="Session d'évaluation" id="ses_e_e" parent="Encadrement_et_Evaluation" action="action_sessionEvaluation"/>
+    <menuitem name="Formulaire d'évaluation" id="ses_e_d" parent="Encadrement_et_Evaluation" action="action_formulaireE"/>
+    
     
   </data>
 </openerp>
